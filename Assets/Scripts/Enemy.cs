@@ -1,6 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider))]
 public class Enemy : MonoBehaviour
 {
     private readonly float _maxLifeTime = 16;
