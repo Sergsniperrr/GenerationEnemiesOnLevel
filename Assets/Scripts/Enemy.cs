@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CapsuleCollider))]
@@ -11,18 +9,16 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float _currentLifeTime;
 
-    public event Action<Enemy> Died;
-
     private void Update()
     {
         transform.Translate(_speed * Time.deltaTime * Vector3.forward);
         _currentLifeTime -= Time.deltaTime * _delay;
 
         if (_currentLifeTime <= 0)
-            Died(this);
+            Destroy(gameObject);
     }
 
-    private void OnEnable()
+    private void Start()
     {
         _currentLifeTime = _maxLifeTime;
     }
