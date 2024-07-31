@@ -1,19 +1,41 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+    private readonly float _delay = 2f;
+
     [SerializeField] private Enemy _prefab;
     [SerializeField] private Spawner[] _spawners;
 
-    private float _repeateRate = 2f;
+    private WaitForSeconds _wait;
+
+    private void Awake()
+    {
+        _wait = new WaitForSeconds(_delay);
+    }
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnOnRandomSpawner), 0.0f, _repeateRate);
+        StartCoroutine(Spawn());
     }
 
     private void SpawnOnRandomSpawner()
     {
-        _spawners[Random.Range(0, _spawners.Length)].SpawnEnemy(_prefab);
+        int spawnerNumber = Random.Range(0, _spawners.Length);
+
+        _spawners[spawnerNumber].SpawnEnemy(_prefab);
+    }
+
+    private IEnumerator Spawn()
+    {
+        bool isMoving = true;
+
+        while (isMoving)
+        {
+            SpawnOnRandomSpawner();
+
+            yield return _wait;
+        }
     }
 }

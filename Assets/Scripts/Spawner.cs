@@ -2,23 +2,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField, Range(0f, 360f)] private float _directionOnY;
+    [SerializeField] private Transform _direction;
 
-    public void SpawnEnemy(Enemy enemy)
+    public void SpawnEnemy(Enemy enemyPrefab)
     {
-        SetPosition(enemy);
-        SetDirection(enemy);
+        Enemy enemy = Instantiate(enemyPrefab);
 
-        Instantiate(enemy);
-    }
-
-    private void SetDirection(Enemy enemy)
-    {
-        enemy.transform.rotation = Quaternion.Euler(0f, _directionOnY, 0f);
-    }
-
-    private void SetPosition(Enemy enemy)
-    {
         enemy.transform.position = transform.position;
+        enemy.transform.forward = _direction.position.normalized;
     }
 }

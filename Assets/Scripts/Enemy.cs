@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
     private readonly float _delay = 1f;
     private readonly float _speed = 4f;
 
+    private Vector3 _direction;
+
     [SerializeField] private float _currentLifeTime;
 
     private void Update()
