@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SpawnController : MonoBehaviour
+public class MainSpawner : MonoBehaviour
 {
     private readonly float _delay = 2f;
 
