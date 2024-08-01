@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class MainSpawner : MonoBehaviour
 {
-    private readonly float _delay = 2f;
-
     [SerializeField] private Enemy _prefab;
     [SerializeField] private Spawner[] _spawners;
+
+    private readonly float _delay = 2f;
 
     private WaitForSeconds _wait;
 
